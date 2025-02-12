@@ -47,7 +47,7 @@ Follow these steps to set up the project locally:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/your-repo-name.git
+   https://github.com/ncktmahajan/nchiktPortfolio.git
    ```
 
 2. Navigate to the project directory:
