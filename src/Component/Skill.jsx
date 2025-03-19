@@ -56,7 +56,7 @@ const Skill = () => {
           <div className="text-[#121212] text-base sm:text-lg md:text-xl lg:text-2xl font-light leading-relaxed ">
             and I hone them every day.
             <br />
-            Currently, I’m also learning Product Design.
+            Currently, I’m also learning AR/VR Design & Product Design.
             <br />
             〙«» ›‹ «»〘
           </div>

@@ -41,7 +41,7 @@ const Contact = () => {
   }, []);
 
   return (
-    <div className="relative min-h-[40vh] sm:min-h-[50vh] lg:min-h-[50vh] w-full p-4 sm:p-6 md:p-8 overflow-x-hidden">
+    <div id="contact" className="relative min-h-[40vh] sm:min-h-[50vh] lg:min-h-[50vh] w-full p-4 sm:p-6 md:p-8 overflow-x-hidden">
       {/* Inline CSS for animations */}
       <style jsx>{`
         @keyframes balance {
@@ -152,7 +152,7 @@ const Contact = () => {
         </div>
         {/* QR code image */}
         <div className="qr-code">
-          <img src="/QRcode.png" alt="QR Code" className="h-20 w-20 lg:h-18 lg:w-18"/>
+          <img src="/QRCode.jpeg" alt="QR Code" className="h-20 w-20 lg:h-18 lg:w-18"/>
         </div>
       </div>
 

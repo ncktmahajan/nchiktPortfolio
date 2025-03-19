@@ -106,7 +106,7 @@ const Exp = () => {
         <div className="space-y-10 mt-10">
           {[
             {
-              title: "UI/UX Developer",
+              title: "UI/UX Designer",
               company: "@ Kosoku Technologies",
               dateRange: "Feb 2025 - Present",
               role: "Intern",
@@ -115,10 +115,10 @@ const Exp = () => {
               title: "UI/UX Developer",
               company: "@ Aures Web Creation",
               dateRange: "Contract Basis",
-              role: "Freelance", // Changed to Freelance
+              role: "Freelance", 
             },
             {
-              title: "UI/UX Designer",
+              title: "Web Designer",
               company: "@ Nixor Obex",
               dateRange: "Jun 2024 - Aug 2024",
               role: "Intern",
@@ -130,10 +130,10 @@ const Exp = () => {
               role: "Intern",
             },
             {
-              title: "Graphic Designer",
+              title: "Digital Artist",
               company: "@ Voice Over Bharat",
               dateRange: "May 2023 - Jul 2023",
-              role: "Intern",
+              role: "Freelance",
             },
           ].map((item, index) => (
             <div

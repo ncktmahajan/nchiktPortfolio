@@ -80,7 +80,7 @@ const About = () => {
 
       `}</style>
 
-      <div className="flex flex-col md:flex-row md:space-x-12 w-full max-w-8xl">
+      <div id="about" className="flex flex-col md:flex-row md:space-x-12 w-full max-w-8xl">
         {/* Top Container */}
         <div
           ref={topContainerRef}

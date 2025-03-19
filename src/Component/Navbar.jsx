@@ -1,80 +1,56 @@
-import { useState, useEffect } from "react";
-import Logo from "./assets/logo.svg"; // Import the logo SVG
-import Cursor from "./Component/Cursor";
+import { useState, useEffect } from "react"; // ✅ Only one import
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth > 767);
+    const handleClickOutside = (event) => {
+      if (isOpen && !event.target.closest(".menu-container")) {
+        setIsOpen(false);
+      }
     };
 
-    handleResize();
-    window.addEventListener("resize", handleResize);
+    document.addEventListener("click", handleClickOutside);
     return () => {
-      window.removeEventListener("resize", handleResize);
+      document.removeEventListener("click", handleClickOutside);
     };
-  }, []);
+  }, [isOpen]);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const toggleMenu = (event) => {
+    event.stopPropagation();
+    setIsOpen((prev) => !prev);
   };
 
   return (
     <div className="fixed top-5 right-5 z-50">
       <div
-        className="cursor-none text-4xl right-10 top-6 font-bold text-black relative hover:text-red-500"
+        className="cursor-pointer text-5xl right-12 top-8 font-bold text-black relative hover:text-red-500"
         onClick={toggleMenu}
-        style={{ animation: 'glow 3s infinite' }}
       >
-        ↯ {/* This is the symbol with glow effect */}
+        ↯
       </div>
 
       {isOpen && (
-        <div className="fixed inset-0 bg-[#F0F8FF] p-4 z-50 cursor-none flex flex-col items-center justify-center space-y-10">
+        <div
+          className="fixed inset-0 bg-[#F0F8FF] p-4 z-50 flex flex-col items-center justify-center space-y-10 menu-container"
+        >
           <button
-            onClick={() => setIsOpen(false)}
-            className="absolute top-4 right-4 text-3xl cursor-none text-black hover:text-red-500"
-            style={{ animation: 'glow 3s infinite' }}
+            onClick={toggleMenu}
+            className="absolute top-4 right-4 text-3xl cursor-pointer text-black hover:text-red-500"
           >
             ✖
           </button>
-          {isDesktop && <Cursor isDesktop={isDesktop} />} {/* Optional Cursor */}
 
-          {/* Animated Links */}
-          <a
-            href="#home"
-            className="text-5xl font-bold cursor-none text-black hover:text-red-500 drop-text"
-            style={{ transitionDelay: '0.1s' }}  // Animation delay for staggered effect
-            onClick={toggleMenu}
-          >
-            Home
-          </a>
-          <a
-            href="#about"
-            className="text-5xl font-bold cursor-none text-black hover:text-red-500 drop-text"
-            style={{ transitionDelay: '0.2s' }}  // Slight delay for each link
-            onClick={toggleMenu}
-          >
-            About
-          </a>
-          <a
-            href="#projects"
-            className="text-5xl font-bold cursor-none text-black hover:text-red-500 drop-text"
-            style={{ transitionDelay: '0.3s' }}  // Delay to stagger
-            onClick={toggleMenu}
-          >
-            Projects
-          </a>
-          <a
-            href="#contact"
-            className="text-5xl font-bold cursor-none text-black hover:text-red-500 drop-text"
-            style={{ transitionDelay: '0.4s' }}  // Further delay
-            onClick={toggleMenu}
-          >
-            Contact
-          </a>
+          {["home", "about", "projects", "contact"].map((section) => (
+            <a
+              key={section}
+              href={`#${section}`}
+              className="text-5xl font-bold cursor-pointer text-black hover:text-red-500"
+              onClick={() => setIsOpen(false)}
+            >
+              {section.charAt(0).toUpperCase() + section.slice(1)}
+            </a>
+          ))}
         </div>
       )}
     </div>

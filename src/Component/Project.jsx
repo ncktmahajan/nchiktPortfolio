@@ -250,7 +250,7 @@ const Projects = () => {
   }, [visibleProjects]);
 
   return (
-    <div className="w-full p-4 md:p-4">
+    <div id="projects" className="w-full p-4 md:p-4">
       <div className="text-[#121212] text-2xl md:text-3xl lg:text-4xl font-light leading-tight mb-6">
         ⁄⁄ Projects
         <div className="load ml-5"></div>
