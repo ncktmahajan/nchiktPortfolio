@@ -21,8 +21,18 @@ const About = () => {
           if (entry.target === topElement) {
             topElement.style.animation = "slideInFromTop 1s ease-out forwards";
           } else if (entry.target === bottomElement) {
-            bottomElement.style.animation =
-              "slideInFromBottom 1s ease-out forwards";
+            bottomElement.style.animation = "slideInFromBottom 1s ease-out forwards";
+          }
+        } else {
+          // Reset animation when element exits viewport
+          if (entry.target === topElement) {
+            topElement.style.animation = "none";
+            topElement.style.opacity = "0";
+            topElement.style.transform = "translateY(-100px)";
+          } else if (entry.target === bottomElement) {
+            bottomElement.style.animation = "none";
+            bottomElement.style.opacity = "0";
+            bottomElement.style.transform = "translateY(100px)";
           }
         }
       });
@@ -36,8 +46,6 @@ const About = () => {
       if (bottomElement) observer.unobserve(bottomElement);
     };
   }, []);
-
-  
 
   return (
     <div
@@ -72,24 +80,18 @@ const About = () => {
           opacity: 0;
         }
 
-         /* Hover effect for whoami */
+        /* Hover effect for whoami */
         .whoami:hover {
           font-weight: bold;
           transition: font-weight 0.3s ease-in-out;
-          }
-
+        }
       `}</style>
 
       <div id="about" className="flex flex-col md:flex-row md:space-x-12 w-full max-w-8xl">
         {/* Top Container */}
         <div
           ref={topContainerRef}
-          className="relative flex-1 mb-8 md:mb-0"
-          style={{
-            opacity: 0,
-            transform: "translateY(-100px)", // Start off-screen (above)
-            transition: "all 0.5s ease-in-out",
-          }}
+          className="relative flex-1 mb-8 md:mb-0 opacity-0"
         >
           <div className="relative w-full bg-transparent rounded-xl border border-black p-4 h-full flex items-center justify-center">
             <div className="absolute -top-4 left-5 flex items-center px-2 py-1 bg-[#F0F8FF] text-[#121212] text-sm md:text-base font-normal">
@@ -99,7 +101,7 @@ const About = () => {
               2024-25
             </div>
             <Image
-              className="w-6/12 md:w-9/12 lg:w-10/12 mx-auto shadow-lg "
+              className="w-6/12 md:w-9/12 lg:w-10/12 mx-auto shadow-lg"
               src={cardImage}
               alt="Card"
             />
@@ -109,15 +111,10 @@ const About = () => {
         {/* Bottom Container */}
         <div
           ref={bottomContainerRef}
-          className="relative flex-1"
-          style={{
-            opacity: 0,
-            transform: "translateY(100px)", // Start off-screen (below)
-            transition: "all 0.5s ease-in-out",
-          }}
+          className="relative flex-1 opacity-0"
         >
           <div className="relative w-full bg-transparent rounded-[13px] border border-[#383838] p-4">
-          <div className="absolute -top-4 left-5 flex items-center px-2 py-1 bg-[#F0F8FF] text-[#121212] text-sm md:text-base font-normal whoami">
+            <div className="absolute -top-4 left-5 flex items-center px-2 py-1 bg-[#F0F8FF] text-[#121212] text-sm md:text-base font-normal whoami">
               whoami
             </div>
             <div className="details mt-12 overflow-auto">
@@ -127,7 +124,8 @@ const About = () => {
                 </div>
                 <div className="text-sm md:text-base lg:text-lg leading-relaxed m-6 ">
                   <div>
-                    <strong>Name:</strong> Nachiket –  <br/>
+                    <strong>Name:</strong> Nachiket –  
+                    <br/>
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                     engineer and designer
                   </div>
@@ -137,7 +135,7 @@ const About = () => {
                     Description
                   </div>
                   <div className="text-sm md:text-base p-4 leading-relaxed mt-2">
-                  From a young age, I’ve been captivated by the blend of
+                    From a young age, I’ve been captivated by the blend of
                     creativity and technology. The magic of turning ideas into
                     visually engaging and intuitive digital experiences drew me
                     towards the world of UI/UX design & development. Over time,
